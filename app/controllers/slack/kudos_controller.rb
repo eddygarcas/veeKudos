@@ -5,8 +5,7 @@ class Slack::KudosController < ApplicationController
   before_action :verify_slack_request
 
   def create
-    raise KudosFormatError unless @commands[0].to_s.include? "@"
-    @blocks = [0]
+    redirect_to my_kudos unless @commands[0].to_s.include? "@"
     @kudo = Kudo.create(Kudo.parse params)
   end
 
