@@ -5,7 +5,7 @@ class Slack::KudosController < ApplicationController
   before_action :verify_slack_request
 
   def create
-    redirect_to kudos_my_kudos_url unless @commands[0].to_s.include? "@"
+    redirect_to kudos_my_kudos_url(params) unless @commands[0].to_s.include? "@"
     @kudo = Kudo.create(Kudo.parse params)
   end
 
