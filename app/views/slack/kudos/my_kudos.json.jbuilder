@@ -2,7 +2,7 @@ title = {
     type: "section",
     text: {
         type: "mrkdwn",
-        text: "🤖 *Here your Kudos*. Kudo the people who gave you one back!!"
+        text: "🤖 *Here your Kudos*. Send kudos to your colleagues using `/kudos @username text`"
     }
 }
 divider = {type: "divider"}
