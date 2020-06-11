@@ -2,7 +2,7 @@ title = {
     type: "section",
     text: {
         type: "mrkdwn",
-        text: "🤖 *Kudos Leaders* here you've got the ranking of Kudos '#{@commands[0].to_s}'!!"
+        text: "🤖 *Kudos Leaders* here you've got the ranking of Kudos #{@commands[0].to_s.capitalize}!!"
     }
 }
 divider = {type: "divider"}
