@@ -13,7 +13,7 @@ elems = @kudos.map.with_index do |elem, index|
       elements: [
       {
           type: "plain_text",
-          text: "📢 *#{elem.sender} said:* \"#{elem.text}\"\n",
+          text: "📢 #{elem.sender} said:  \"#{elem.text}\" at #{elem.created_at.strftime("%d/%m/%Y %H:%M")}\n",
           emoji: true
       }]
   }
