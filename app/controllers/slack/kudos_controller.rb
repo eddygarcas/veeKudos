@@ -23,10 +23,6 @@ class Slack::KudosController < ApplicationController
     end
   end
 
-  def my_kudos
-    @kudos = Kudo.by_user params[:user_name]
-  end
-
   private
 
   #Commands will contains and array from the text introduced by the sender https://api.slack.com/interactivity/slash-commands
