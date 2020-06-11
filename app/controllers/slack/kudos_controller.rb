@@ -2,11 +2,15 @@ class Slack::KudosController < ApplicationController
   include Slack::KudosHelper
   skip_before_action :verify_authenticity_token
   before_action :set_command
+
   before_action :verify_slack_request
 
   def create
-    redirect_to kudos_my_kudos_url(params) unless @commands[0].to_s.include? "@"
-    @kudo = Kudo.create(Kudo.parse params)
+    @kudo = Kudo.create(Kudo.parse params) if @commands[0].to_s.include? "@"
+    unless @commands[0].to_s.include? "@"
+      @kudos = Kudo.by_user params[:user_name]
+      render 'slack/kudos/my_kudos'
+    end
   end
 
   def leaders
