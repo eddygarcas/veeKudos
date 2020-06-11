@@ -5,16 +5,16 @@ class Slack::KudosController < ApplicationController
   before_action :verify_slack_request
 
   def create
-    redirect_to my_kudos unless @commands[0].to_s.include? "@"
+    redirect_to kudos_my_kudos_path unless @commands[0].to_s.include? "@"
     @kudo = Kudo.create(Kudo.parse params)
   end
 
   def leaders
-    raise LeadersFormatError unless ["getter","givers","all"].include? @commands[0].to_s.downcase
+    raise LeadersFormatError unless ["getter","giver","all"].include? @commands[0].to_s.downcase
     case @commands[0].to_s.downcase
     when "getter"
       @kudos = Kudo.receiver_leader.sort_by {|_k, v| v}.reverse
-    when "givers"
+    when "giver"
       @kudos = Kudo.sender_leader.sort_by {|_k, v| v}.reverse
     end
   end
