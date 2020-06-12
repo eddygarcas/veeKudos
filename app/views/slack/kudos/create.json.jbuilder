@@ -15,7 +15,7 @@ message = {
     },
     accessory: {
         type: "image",
-        image_url: "https://veekudos.herokuapp.com/public/images#{rand(13)}.jpg",
+        image_url: "https://veekudos.herokuapp.com/public/images/#{rand(13)}.jpg",
         alt_text: "Kudo!"
     }
 }
