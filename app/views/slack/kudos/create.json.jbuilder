@@ -15,7 +15,7 @@ message = {
     },
     accessory: {
         type: "image",
-        image_url: "https://veekudos.herokuapp.com/images/#{rand(13)}.jpg",
+        image_url: "#{GiphySlack::get_giphy}",
         alt_text: "Kudo!"
     }
 }
