@@ -10,7 +10,6 @@ class Slack::KudosController < ApplicationController
     if @commands[0].to_s.include? "@"
       @kudo = Kudo.create(Kudo.parse params)
       @image = Slack::KudosHelper.get_giphy
-      pp @image
     end
     unless @commands[0].to_s.include? "@"
       @kudos = Kudo.by_user params[:user_name]

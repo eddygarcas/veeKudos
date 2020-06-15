@@ -15,7 +15,7 @@ message = {
     },
     accessory: {
         type: "image",
-        image_url: "#{@image.to_s}",
+        image_url: "#{@image}",
         alt_text: "Kudo!"
     }
 }
@@ -29,4 +29,5 @@ footer =  {
             }
         ]
     }
+
 json.set! "blocks", [title,divider,message,divider,footer]
