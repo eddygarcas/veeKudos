@@ -15,7 +15,7 @@ message = {
     },
     accessory: {
         type: "image",
-        image_url: "#{@image}",
+        image_url: "#{@image.to_s}",
         alt_text: "Kudo!"
     }
 }

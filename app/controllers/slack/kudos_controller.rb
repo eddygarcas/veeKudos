@@ -7,12 +7,15 @@ class Slack::KudosController < ApplicationController
   before_action :verify_slack_request
 
   def create
-    @kudo = Kudo.create(Kudo.parse params) if @commands[0].to_s.include? "@"
+    if @commands[0].to_s.include? "@"
+      @kudo = Kudo.create(Kudo.parse params)
+      @image = Slack::KudosHelper.get_giphy
+      pp @image
+    end
     unless @commands[0].to_s.include? "@"
       @kudos = Kudo.by_user params[:user_name]
       render 'slack/kudos/my_kudos'
     end
-    @image = Slack::KudosHelper.get_giphy
   end
 
   def leaders
