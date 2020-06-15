@@ -15,7 +15,7 @@ message = {
     },
     accessory: {
         type: "image",
-        image_url: "#{GiphySlack::get_giphy}",
+        image_url: "#{@image}",
         alt_text: "Kudo!"
     }
 }
@@ -29,5 +29,4 @@ footer =  {
             }
         ]
     }
-
 json.set! "blocks", [title,divider,message,divider,footer]

@@ -1,3 +1,5 @@
+require_relative '../../../app/helpers/giphy_slack_helper'
+
 class Slack::KudosController < ApplicationController
   include Slack::KudosHelper
   skip_before_action :verify_authenticity_token
@@ -11,6 +13,7 @@ class Slack::KudosController < ApplicationController
       @kudos = Kudo.by_user params[:user_name]
       render 'slack/kudos/my_kudos'
     end
+    @image = GiphySlack::get_giphy
   end
 
   def leaders
