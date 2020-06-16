@@ -19,8 +19,7 @@ module Slack::KudosHelper
   end
 
   def self.kudo_category text
-    pp text
-    adj = ["awesome","well done","proud","great job","congratulation","thanks"].map {|elem| text.downcase.include? elem }
+    adj = ["awesome","well done","proud","great job","congratulation","thanks"].select {|elem| text.downcase.include? elem }
     pp adj
     adj[0]
   end
