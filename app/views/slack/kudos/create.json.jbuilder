@@ -11,7 +11,7 @@ message = {
     type: "section",
     text: {
         type: "mrkdwn",
-        text: "👉 #{@kudo.text}"
+        text: ":veepee: #{@kudo.text}"
     },
     accessory: {
         type: "image",
