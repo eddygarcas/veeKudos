@@ -7,8 +7,7 @@ class Slack::KudosController < ApplicationController
   before_action :verify_slack_request
 
   def create
-    case
-    when @commands[0].to_s.downcase.include? "@"
+    if @commands[0].to_s.downcase.include? "@"
       @kudo = Kudo.create(Kudo.parse params)
       @image = Slack::KudosHelper.get_giphy
     else
