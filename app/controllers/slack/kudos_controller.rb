@@ -9,7 +9,7 @@ class Slack::KudosController < ApplicationController
   def create
     if @commands[0].to_s.downcase.include? "@"
       @kudo = Kudo.create(Kudo.parse params)
-      @image = Slack::KudosHelper.get_giphy
+      @image = Slack::KudosHelper.get_giphy params[:text]
     else
       @kudos = Kudo.by_user params[:user_name]
       render 'slack/kudos/my_kudos'

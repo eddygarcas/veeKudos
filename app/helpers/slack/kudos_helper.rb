@@ -12,10 +12,15 @@ module Slack::KudosHelper
   # great job
   # congratulations
   # many thanks
-  def self.get_giphy
+  def self.get_giphy text = "great job"
     instance = GiphyClient::DefaultApi.new
-    data = instance.gifs_search_get(ENV["GIPHY_API_KEY"],'great job',{limit: 25})
+    data = instance.gifs_search_get(ENV["GIPHY_API_KEY"],kudo_category(text),{limit: 25})
     data.data[rand(25)].images.downsized.url
+  end
+
+  def self.kudo_category text
+    adj = ["awesome","well done","proud","great job","congratulation","thanks"].map {|elem| elem.include? text }
+    adj[0]
   end
 
 end
