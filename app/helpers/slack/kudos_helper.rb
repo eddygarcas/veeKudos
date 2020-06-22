@@ -26,6 +26,8 @@ module Slack::KudosHelper
         param.to_s.downcase.include? "@"
       when "list"
         param.blank?
+      when "delete"
+        true
       end
     end
   end

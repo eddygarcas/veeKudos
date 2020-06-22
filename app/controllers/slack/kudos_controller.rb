@@ -18,6 +18,9 @@ class Slack::KudosController < ApplicationController
     when Action.new("kudo")
       make_a_kudo
       render 'slack/kudos/create' and return
+    when Action.new("delete")
+      delete_my_kudos
+      render 'slack/kudos/my_kudos' and return
     end
     raise KudosFormatError
   end
@@ -40,6 +43,10 @@ class Slack::KudosController < ApplicationController
 
   def return_kudos_list
     @kudos = Kudo.by_user params[:user_name]
+  end
+
+  def delete_my_kudos
+    @kudos = Kudo.by_user(params[:user_name]).delete_all
   end
 
   private

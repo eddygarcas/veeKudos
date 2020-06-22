@@ -5,7 +5,6 @@ class Kudo < ApplicationRecord
   scope :by_user, -> (getter) {where(receiver: "@#{getter}")}
 
   def self.parse params
-    #First should be the user
     aparams = *params[:text].split(" ")
     raise StandardError unless aparams[0].to_s.include? "@"
     {channel_id: params[:channel_id],
