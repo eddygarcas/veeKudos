@@ -9,11 +9,11 @@ class Slack::KudosController < ApplicationController
   Action = Struct.new(:operation) do
     def === (param)
       case operation
-      when :leader
+      when "leader"
         ["getter","giver"].include? param.to_s.downcase
-      when :kudo
+      when "kudo"
         param.to_s.downcase.include? "@"
-      when :list
+      when "list"
         param.empty?
       end
     end
@@ -21,13 +21,13 @@ class Slack::KudosController < ApplicationController
 
   def create
     case @commands[0]
-    when Action.new :list
+    when Action.new("list")
       return_kudos_list
       render 'slack/kudos/my_kudos'
-    when Action.new :leader
+    when Action.new("leader")
       leader_list @commands[0].to_s.downcase
       render 'slack/kudos/leaders'
-    when Action.new :kudo
+    when Action.new("kudo")
       make_a_kudo
       render 'slack/kudos/create'
     end
