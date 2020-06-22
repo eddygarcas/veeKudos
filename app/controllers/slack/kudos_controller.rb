@@ -7,7 +7,6 @@ class Slack::KudosController < ApplicationController
   before_action :verify_slack_request
 
   def create
-    raise KudosFormatError unless ["getter","giver","@"].include? @commands[0].to_s.downcase unless @commands.empty?
     case
     when @commands[0].to_s.downcase.empty?
       return_kudos_list
