@@ -46,7 +46,8 @@ class Slack::KudosController < ApplicationController
   end
 
   def delete_my_kudos
-    @kudos = Kudo.by_user(params[:user_name]).delete_all
+    Kudo.by_user(params[:user_name]).delete_all
+    @kudos = Kudo.by_user params[:user_name]
   end
 
   private
