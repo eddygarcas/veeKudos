@@ -14,7 +14,7 @@ class Slack::KudosController < ApplicationController
       when "kudo"
         param.to_s.downcase.include? "@"
       when "list"
-        param.empty?
+        param.blank?
       end
     end
   end
