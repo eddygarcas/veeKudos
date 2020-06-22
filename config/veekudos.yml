@@ -3,6 +3,8 @@ defaults: &defaults
   kudo_categories: ['awesome','well done','proud','great job','congratulation','thanks']
   company_emoji: ':veepee:'
 
+
+
 development:
   <<: *defaults
   name: veeKudos Development

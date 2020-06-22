@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     render json: {text: "*🤖 Ups!* Something went wrong, try again using the following format `/leaders [getters | givers]`"}
   end
   def rescue_400
-    render json: {text: "*🤖 Ups!* Something went wrong, try again using the following format `/kudos @username text`"}
+    render json: {text: "*🤖 Ups!* Something went wrong, try again using the following format `/kudos @username text` or `/kudos [getter | giver]`"}
   end
 
   private

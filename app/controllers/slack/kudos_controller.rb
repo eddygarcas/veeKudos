@@ -7,23 +7,42 @@ class Slack::KudosController < ApplicationController
   before_action :verify_slack_request
 
   def create
-    if @commands[0].to_s.downcase.include? "@"
-      @kudo = Kudo.create(Kudo.parse params)
-      @image = Slack::KudosHelper.get_giphy params[:text]
-    else
-      @kudos = Kudo.by_user params[:user_name]
+    raise KudosFormatError unless ["getter","giver","@"].include? @commands[0].to_s.downcase unless @commands.empty?
+    case
+    when @commands[0].to_s.downcase.empty?
+      return_kudos_list
       render 'slack/kudos/my_kudos'
+    when ["getter","giver"].include? @commands[0].to_s.downcase
+      leader_list @commands[0].to_s.downcase
+      render 'slack/kudos/leaders'
+    when @commands[0].to_s.downcase.include? "@"
+      make_a_kudo
+      render 'slack/kudos/create'
     end
   end
 
   def leaders
-    raise LeadersFormatError unless ["getter","giver","all"].include? @commands[0].to_s.downcase
-    case @commands[0].to_s.downcase
+    raise KudosFormatError unless ["getter","giver","all","@"].include? @commands[0].to_s.downcase unless @commands.empty?
+  end
+
+  protected
+
+  def leader_list command
+    case command
     when "getter"
       @kudos = Kudo.receiver_leader.sort_by {|_k, v| v}.reverse
     when "giver"
       @kudos = Kudo.sender_leader.sort_by {|_k, v| v}.reverse
     end
+  end
+
+  def make_a_kudo
+    @kudo = Kudo.create(Kudo.parse params)
+    @image = Slack::KudosHelper.get_giphy params[:text]
+  end
+
+  def return_kudos_list
+    @kudos = Kudo.by_user params[:user_name]
   end
 
   private
