@@ -11,13 +11,13 @@ class Slack::KudosController < ApplicationController
     case @commands[0]
     when Action.new("list")
       return_kudos_list
-      render 'slack/kudos/my_kudos'
+      render 'slack/kudos/my_kudos' and return
     when Action.new("leader")
       leader_list @commands[0].to_s.downcase
-      render 'slack/kudos/leaders'
+      render 'slack/kudos/leaders' and return
     when Action.new("kudo")
       make_a_kudo
-      render 'slack/kudos/create'
+      render 'slack/kudos/create' and return
     end
     raise KudosFormatError
   end
