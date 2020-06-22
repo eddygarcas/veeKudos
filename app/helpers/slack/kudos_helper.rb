@@ -7,7 +7,7 @@ module Slack::KudosHelper
   end
 
   def self.get_giphy text = ""
-    category = kudo_category text {|elem| elem.blank? ? "great job" : elem}
+    category = kudo_category(text) {|elem| elem.blank? ? "great job" : elem}
     Rails.cache.fetch("get_giphy_#{category}", expires_in: 5.day) {
       GiphyClient::DefaultApi.new.gifs_search_get(ENV["GIPHY_API_KEY"], category, {limit: 25})
     }[rand(25)].images.downsized.url
