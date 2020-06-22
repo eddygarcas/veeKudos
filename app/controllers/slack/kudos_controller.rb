@@ -6,18 +6,6 @@ class Slack::KudosController < ApplicationController
 
   before_action :verify_slack_request
 
-  Action = Struct.new(:operation) do
-    def === (param)
-      case operation
-      when "leader"
-        ["getter","giver"].include? param.to_s.downcase
-      when "kudo"
-        param.to_s.downcase.include? "@"
-      when "list"
-        param.blank?
-      end
-    end
-  end
 
   def create
     case @commands[0]
@@ -31,10 +19,7 @@ class Slack::KudosController < ApplicationController
       make_a_kudo
       render 'slack/kudos/create'
     end
-  end
-
-  def leaders
-    #raise KudosFormatError unless ["getter","giver","all","@"].include? @commands[0].to_s.downcase unless @commands.empty?
+    raise KudosFormatError
   end
 
   protected

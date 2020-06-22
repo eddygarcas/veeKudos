@@ -15,4 +15,17 @@ module Slack::KudosHelper
     yield VeeKudos.config[:kudo_categories].select {|elem| text.downcase.include? elem }[0]
   end
 
+  Action = Struct.new(:operation) do
+    def === (param)
+      case operation
+      when "leader"
+        ["getter","giver"].include? param.to_s.downcase
+      when "kudo"
+        param.to_s.downcase.include? "@"
+      when "list"
+        param.blank?
+      end
+    end
+  end
+
 end
