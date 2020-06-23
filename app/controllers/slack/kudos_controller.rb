@@ -21,6 +21,9 @@ class Slack::KudosController < ApplicationController
     when Action.new("delete")
       delete_my_kudos
       render 'slack/kudos/my_kudos' and return
+    when Action.new("all")
+      @kudos = Kudo.all
+      render 'slack/kudos/my_kudos' and return
     end
     raise KudosFormatError
   end

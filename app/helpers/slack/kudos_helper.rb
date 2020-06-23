@@ -28,6 +28,8 @@ module Slack::KudosHelper
         param.to_s.downcase.eql? "list"
       when "delete"
         param.to_s.downcase.eql? "delete"
+      when "all"
+        param.to_s.downcase.eql? "all"
       end
     end
   end
