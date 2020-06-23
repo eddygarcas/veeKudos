@@ -27,7 +27,7 @@ module Slack::KudosHelper
       when "list"
         param.blank?
       when "delete"
-        param.eql? param.to_s.downcase
+        param.to_s.downcase.elq? "delete"
       end
     end
   end
