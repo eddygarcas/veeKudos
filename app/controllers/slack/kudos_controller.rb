@@ -51,6 +51,9 @@ class Slack::KudosController < ApplicationController
   def delete_my_kudos
     Kudo.by_user(params[:user_name]).delete_all
     @kudos = Kudo.by_user params[:user_name]
+
+    Slack::BotHelper::Herald.new.send_message_to(params[:channel_id],"Your kudos have been deleted.")
+
   end
 
   private
