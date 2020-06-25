@@ -1,4 +1,3 @@
-require 'httparty'
 
 module Slack::BotHelper
   class Herald
@@ -7,7 +6,8 @@ module Slack::BotHelper
     format :json
 
     def initialize(uri = VeeKudos.config[:slack_api][:base_uri])
-      self.base_uri = uri
+      pp uri
+      self.base_uri uri
     end
 
     def send_message_to channel_id, text
