@@ -3,9 +3,9 @@ defaults: &defaults
   kudo_categories: ['awesome','well done','proud','great job','congratulation','thanks']
   company_emoji: ':veepee:'
   :slack_api:
-    :base_uri: https://slack.com/api/
-    :postMessage: chat.postMessage
-    :scheduleMessage: chat.scheduleMessage
+    :base_uri: https://slack.com/api
+    :postMessage: /chat.postMessage
+    :scheduleMessage: /chat.scheduleMessage
 
 development:
   <<: *defaults
