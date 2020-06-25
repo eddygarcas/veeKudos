@@ -2,7 +2,7 @@ module Slack::BotHelper
   class Herald
     include HTTParty
 
-    attr_reader :xoxb_token
+    attr_accessor :xoxb_token
 
     format :json
     xoxb_token ENV[:XOXB_TOKEN.to_s]
