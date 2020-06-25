@@ -1,14 +1,13 @@
 module Slack::BotHelper
   class Herald
     include HTTParty
-
     attr_accessor :xoxb_token
 
     format :json
-    xoxb_token ENV[:XOXB_TOKEN.to_s]
 
-    def initialize(uri = VeeKudos.config[:slack_api][:base_uri])
+    def initialize(uri = VeeKudos.config[:slack_api][:base_uri], token = ENV[:XOXB_TOKEN.to_s])
       self.class.base_uri uri
+      self.xoxb_token =  token
     end
 
     def send_message_to channel_id, text
