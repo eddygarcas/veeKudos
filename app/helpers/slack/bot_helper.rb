@@ -10,8 +10,9 @@ module Slack::BotHelper
     end
 
     def send_message_to channel_id, text
+      pp self.class.base_uri
       response = self.class.post(
-          VeeKudos.config[:slack_api][:postMessage],
+          self.class.base_uri + VeeKudos.config[:slack_api][:postMessage],
           headers: {"Authorization" => "Bearer #{ENV[:XOXB_TOKEN.to_s]}"},
           body: {channel: channel_id,text: text})
       pp response
