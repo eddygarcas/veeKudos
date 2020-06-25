@@ -1,6 +1,8 @@
 
 class Slack::KudosController < ApplicationController
   include Slack::KudosHelper
+  include Slack::BotHelper
+
   skip_before_action :verify_authenticity_token
   before_action :set_command
 
@@ -52,7 +54,7 @@ class Slack::KudosController < ApplicationController
     Kudo.by_user(params[:user_name]).delete_all
     @kudos = Kudo.by_user params[:user_name]
 
-    Slack::BotHelper::Herald.new.send_message_to(params[:channel_id],"Your kudos have been deleted.")
+    Herald.new.send_message_to(params[:channel_id],"Your kudos have been deleted.")
 
   end
 
