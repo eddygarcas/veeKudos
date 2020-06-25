@@ -15,6 +15,7 @@ module Slack::BotHelper
           "https://slack.com/api/chat.postMessage",
           headers: {"Authorization" => "Bearer #{ENV[:XOXB_TOKEN.to_s]}"},
           body: {channel: channel_id,text: text})
+      pp response
     end
 
   end
