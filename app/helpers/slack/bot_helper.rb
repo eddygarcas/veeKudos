@@ -1,9 +1,14 @@
 module Slack::BotHelper
   class Herald
     include HTTParty
-    attr_accessor :xoxb_token
-
     format :json
+
+    attr_reader :xoxb_token
+
+    def xoxb_token(token = nil)
+      xoxb_token = token
+    end
+
 
     def initialize(uri = VeeKudos.config[:slack_api][:base_uri], token = ENV[:XOXB_TOKEN.to_s])
       self.class.base_uri uri
