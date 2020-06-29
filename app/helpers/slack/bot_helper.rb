@@ -19,11 +19,10 @@ module Slack::BotHelper
     end
 
     def send_to_webhook text
-      pp self.class.base_uri
-      pp VeeKudos.config[:web_hooks][:channel]
+      pp '{"text":"' + text + '"}'
       self.class.post(
           VeeKudos.config[:web_hooks][:channel],
-          body: '{text:"' + text + '"}')
+          body: '{"text":' + text + '"}')
     end
 
   end
