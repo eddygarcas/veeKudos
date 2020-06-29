@@ -23,8 +23,7 @@ module Slack::BotHelper
       pp VeeKudos.config[:web_hooks][:channel]
       self.class.post(
           VeeKudos.config[:web_hooks][:channel],
-          headers: {Authorization: "Bearer #{xoxb_token}"},
-          body: {text: text})
+          body: '{text:"' + text + '"}')
     end
 
   end
