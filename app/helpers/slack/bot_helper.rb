@@ -18,5 +18,13 @@ module Slack::BotHelper
       pp response
     end
 
+    def send_to_webhook text
+      response = self.class.post(
+          VeeKudos.config[:web_hooks][:channel],
+          headers: {Authorization: "Bearer #{xoxb_token}"},
+          body: {text: text})
+      pp response
+    end
+
   end
 end

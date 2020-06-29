@@ -52,8 +52,7 @@ class Slack::KudosController < ApplicationController
   def delete_my_kudos
     Kudo.by_user(params[:user_name]).delete_all
     @kudos = Kudo.by_user params[:user_name]
-
-    Herald.new.send_message_to(params[:channel_id],"Your kudos have been deleted.")
+    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).send_to_webhook "Your kudos have been deleted."
   end
 
   private
