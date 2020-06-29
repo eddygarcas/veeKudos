@@ -48,7 +48,6 @@ class Slack::KudosController < ApplicationController
 
   def return_kudos_list
     @kudos = Kudo.by_user params[:user_name]
-    pp Herald.new.send_message_to(params[:channel_id],"this is a test")
   end
 
   def delete_my_kudos

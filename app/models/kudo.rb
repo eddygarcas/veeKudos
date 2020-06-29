@@ -1,4 +1,5 @@
 class Kudo < ApplicationRecord
+  belongs_to :workspace
 
   scope :receiver_leader, -> {group(:receiver).count(:all)}
   scope :sender_leader, -> {group(:sender).count(:all)}
