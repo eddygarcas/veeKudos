@@ -34,9 +34,9 @@ class Slack::KudosController < ApplicationController
   def leader_list command
     case command
     when "getter"
-      @kudos = Kudo.receiver_leader.sort_by {|_k, v| v}.reverse
+      @kudos = Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse
     when "giver"
-      @kudos = Kudo.sender_leader.sort_by {|_k, v| v}.reverse
+      @kudos = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse
     end
   end
 

@@ -1,7 +1,7 @@
 class Kudo < ApplicationRecord
 
-  scope :receiver_leader, -> {group(:receiver).count(:all)}
-  scope :sender_leader, -> {group(:sender).count(:all)}
+  scope :getter_leader, -> (id) {where(team_id: id).group(:receiver).count(:all)}
+  scope :giver_leader, -> (id) {where(team_id: id).group(:sender).count(:all)}
   scope :by_user, -> (getter) {where(receiver: "@#{getter}")}
 
   def self.parse params
