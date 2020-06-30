@@ -1,5 +1,6 @@
-require_relative '../../app/helpers/slack/bot_helper'
 class KudosJob < ApplicationJob
+  include Slack::BotHelper
+
   queue_as :default
 
   def perform(*args)
