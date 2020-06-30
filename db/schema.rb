@@ -27,4 +27,5 @@ ActiveRecord::Schema.define(version: 2020_06_29_140232) do
     t.string "team_id"
     t.index ["team_id"], name: "index_kudos_on_team_id"
   end
+
 end

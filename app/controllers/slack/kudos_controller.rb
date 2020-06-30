@@ -38,13 +38,13 @@ class Slack::KudosController < ApplicationController
     when "giver"
       @kudos = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse
     end
-    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).send_to_webhook(Slack::KudosController.render 'slack/kudos/my_kudos')
   end
 
   def make_a_kudo
     @kudo = Kudo.create(Kudo.parse params)
     @image = Slack::KudosHelper.get_giphy params[:text]
-    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).send_to_webhook "🤖 Hey! *#{@kudo.sender.delete_prefix("@")}* gave a Kudo to *#{@kudo.receiver.delete_prefix("@")}* at ##{@kudo.channel_name} :clap:"
+    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).
+        send_to_webhook(Slack::KudosController.render(:plain, assigns: {kudo: @kudo}))
   end
 
   def return_kudos_list

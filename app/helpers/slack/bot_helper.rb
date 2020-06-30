@@ -17,10 +17,10 @@ module Slack::BotHelper
           body: {channel: channel_id,text: text})
     end
 
-    def send_to_webhook text
+    def send_to_webhook json_msg
       self.class.post(
           VeeKudos.config[:web_hooks][:channel],
-          body: '{"text":"' + text + '"}')
+          body: json_msg)
     end
   end
 end

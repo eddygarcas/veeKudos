@@ -3,7 +3,10 @@ class KudosJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    @kudos = Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse
-    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).send_to_webhook(Slack::KudosController.render 'slack/kudos/leaders')
+    @commands = []
+    @commands[0] = ""
+    @kudos = Kudo.getter_leader("T0F48V7E2").sort_by {|_k, v| v}.reverse
+    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).
+        send_to_webhook(Slack::KudosController.render(:leaders, assigns: {commands: @commands, kudos: @kudo}))
   end
 end
