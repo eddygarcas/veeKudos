@@ -1,4 +1,4 @@
-require '../../app/helpers/slack/bot_helper'
+require_relative '../../app/helpers/slack/bot_helper'
 class KudosJob < ApplicationJob
   queue_as :default
 
