@@ -38,7 +38,7 @@ class Slack::KudosController < ApplicationController
     when "giver"
       @kudos = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse
     end
-    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).send_to_webhook(Slack::KudosController.render 'slack/kudos/leaders')
+    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).send_to_webhook(Slack::KudosController.render 'slack/kudos/my_kudos')
   end
 
   def make_a_kudo
