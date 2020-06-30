@@ -18,7 +18,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
 gem 'crack'
 gem 'GiphyClient'
-
+gem 'sidekiq'
 gem 'jwt'
 gem 'devise'
 # Use Active Storage variant
