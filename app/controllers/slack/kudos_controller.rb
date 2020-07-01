@@ -48,8 +48,8 @@ class Slack::KudosController < ApplicationController
     @kudo = Kudo.parse(params)
     @image = get_giphy params[:text]
 
-    Herald.new(VeeKudos.config[:web_hooks][:base_uri]).
-        send_message_to(Slack::KudosController.render(:plain, assigns: {kudo: @kudo}))
+    #Herald.new(VeeKudos.config[:web_hooks][:base_uri]).
+     #   send_message_to(Slack::KudosController.render(:plain, assigns: {kudo: @kudo}))
   end
 
   def return_kudos_list
