@@ -1,4 +1,3 @@
-
 class Slack::KudosController < ApplicationController
   include Slack::KudosHelper
   include Slack::BotHelper
@@ -41,9 +40,8 @@ class Slack::KudosController < ApplicationController
   end
 
   def make_a_kudo
-    rec = list_of_receivers(params)
-    Kudo.create_set(params,rec)
-    @kudo = Kudo.last(rec.length).first
+    len = Kudo.create_set(params).length
+    @kudo = Kudo.last(len).first
     @image = get_giphy params[:text]
 
     Herald.new(VeeKudos.config[:web_hooks][:base_uri]).
@@ -73,8 +71,8 @@ class Slack::KudosController < ApplicationController
       return
     end
 
-    sig_basestring  = "v0:#{timestamp}:#{request.raw_post}"
-    signature       = "v0=" + OpenSSL::HMAC.hexdigest("SHA256", Rails.application.credentials.slack_signing_secret, sig_basestring)
+    sig_basestring = "v0:#{timestamp}:#{request.raw_post}"
+    signature = "v0=" + OpenSSL::HMAC.hexdigest("SHA256", Rails.application.credentials.slack_signing_secret, sig_basestring)
     slack_signature = request.headers['X-Slack-Signature']
 
     if !ActiveSupport::SecurityUtils.secure_compare(signature, slack_signature)
