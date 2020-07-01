@@ -43,7 +43,7 @@ class Slack::KudosController < ApplicationController
   def make_a_kudo
     rec = list_of_receivers(params)
     Kudo.create_set(params,rec)
-    @kudo = Kudo.offset(rec.length).limit(1).first
+    @kudo = Kudo.last(rec.length).first
     @image = get_giphy params[:text]
 
     Herald.new(VeeKudos.config[:web_hooks][:base_uri]).
