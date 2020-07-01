@@ -10,17 +10,16 @@ module Slack::BotHelper
       self.xoxb_token =  token
     end
 
-    def send_message_to channel_id, text
+    def send_message_to text, channel_id = nil
       self.class.post(
           VeeKudos.config[:slack_api][:postMessage],
           headers: {Authorization: "Bearer #{xoxb_token}"},
-          body: {channel: channel_id,text: text})
-    end
+          body: {channel: channel_id,text: text}) unless channel_id.blank?
 
-    def send_to_webhook json_msg
       self.class.post(
           Rails.application.credentials.web_hook_secret,
-          body: json_msg)
+          body: text) unless channel_id.present?
     end
+
   end
 end

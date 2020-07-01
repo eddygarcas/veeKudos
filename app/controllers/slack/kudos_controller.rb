@@ -41,10 +41,15 @@ class Slack::KudosController < ApplicationController
   end
 
   def make_a_kudo
-    @kudo = Kudo.create(Kudo.parse params)
-    @image = Slack::KudosHelper.get_giphy params[:text]
+    list_of_receivers(params).each do |r|
+      Kudo.create(Kudo.parse(params,r))
+    end
+
+    @kudo = Kudo.parse(params)
+    @image = get_giphy params[:text]
+
     Herald.new(VeeKudos.config[:web_hooks][:base_uri]).
-        send_to_webhook(Slack::KudosController.render(:plain, assigns: {kudo: @kudo}))
+        send_message_to(Slack::KudosController.render(:plain, assigns: {kudo: @kudo}))
   end
 
   def return_kudos_list
