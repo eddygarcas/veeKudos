@@ -8,7 +8,6 @@ defaults: &defaults
     :scheduleMessage: /chat.scheduleMessage
   :web_hooks:
     :base_uri: https://hooks.slack.com/services
-    :channel: /T0F48V7E2/B0160BY87DL/5XYYSGzn6QbMwTfBoR12wxia
 
 development:
   <<: *defaults

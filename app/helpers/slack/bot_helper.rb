@@ -19,7 +19,7 @@ module Slack::BotHelper
 
     def send_to_webhook json_msg
       self.class.post(
-          VeeKudos.config[:web_hooks][:channel],
+          Rails.application.credentials.web_hook_secret,
           body: json_msg)
     end
   end
