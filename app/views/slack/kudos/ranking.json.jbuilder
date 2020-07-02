@@ -41,6 +41,6 @@ end
 
 
 
-json.set! "blocks", [title, divider,givers] + elems + [getters] + elems_g
+json.set! "blocks", [title, divider,givers,elems,getters,elems_g].flatten
 
 🎁
