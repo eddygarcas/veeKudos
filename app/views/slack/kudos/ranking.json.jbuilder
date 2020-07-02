@@ -6,13 +6,15 @@ title = {
     }
 }
 divider = {type: "divider"}
-givers = {
+
+giv_sec = {
     type: "section",
     text: {
         type: "mrkdwn",
         text: "🎁 *People who gave more Kudos*"
     }
 }
+
 elems = @givers.map.with_index do |(key, value), index|
   {
       type: "section",
@@ -22,13 +24,15 @@ elems = @givers.map.with_index do |(key, value), index|
       }
   }
 end
-getters = {
+
+get_sec = {
     type: "section",
     text: {
         type: "mrkdwn",
         text: "🏆 *People who got more Kudos*"
     }
 }
+
 elems_g = @getters.map.with_index do |(key, value), index|
   {
       type: "section",
@@ -39,8 +43,4 @@ elems_g = @getters.map.with_index do |(key, value), index|
   }
 end
 
-
-
-json.set! "blocks", [title, divider,givers,elems,getters,elems_g].flatten
-
-🎁
+json.set! "blocks", [title, divider,giv_sec,elems,get_sec,elems_g].flatten
