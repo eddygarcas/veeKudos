@@ -15,6 +15,10 @@ class Slack::KudosController < ApplicationController
     when Action.new("leader")
       leader_list @commands[0].to_s.downcase
       render 'slack/kudos/leaders' and return
+    when Action.new("ranking")
+      @elems = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
+      @elems_g = Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
+      render 'slack/kudos/ranking' and return
     when Action.new("kudo")
       make_a_kudo
       render 'slack/kudos/create' and return
@@ -33,9 +37,9 @@ class Slack::KudosController < ApplicationController
   def leader_list command
     case command
     when "getter"
-      @kudos = Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse
+      @kudos = Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
     when "giver"
-      @kudos = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse
+      @kudos = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
     end
   end
 
