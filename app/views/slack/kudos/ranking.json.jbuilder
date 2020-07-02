@@ -1,8 +1,9 @@
+json.response_type "in_channel"
 title = {
     type: "section",
     text: {
         type: "mrkdwn",
-        text: "🤖 *Ranking* here you've got the ranking of Kudos!!"
+        text: "🤖 *Ranking* Top five getters and kudos givers!!"
     }
 }
 divider = {type: "divider"}
@@ -11,7 +12,7 @@ giv_sec = {
     type: "section",
     text: {
         type: "mrkdwn",
-        text: "🎁 *People who gave more Kudos*"
+        text: "🎁 *Who gave more Kudos*"
     }
 }
 
@@ -29,7 +30,7 @@ get_sec = {
     type: "section",
     text: {
         type: "mrkdwn",
-        text: "🏆 *People who got more Kudos*"
+        text: "🏆 *Who has received more Kudos*"
     }
 }
 

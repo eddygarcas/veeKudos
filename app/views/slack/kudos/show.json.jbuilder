@@ -22,4 +22,4 @@ elems = @kudos.map.with_index do |elem, index|
       }]
   }
 end
-json.set! "blocks", [title, divider] + elems
+json.set! "blocks", [title, divider,elems].flatten
