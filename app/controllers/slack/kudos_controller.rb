@@ -16,8 +16,8 @@ class Slack::KudosController < ApplicationController
       leader_list @commands[0].to_s.downcase
       render 'slack/kudos/leaders' and return
     when Action.new("ranking")
-      @elems = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
-      @elems_g = Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
+      @givers = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
+      @getters = Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
       render 'slack/kudos/ranking' and return
     when Action.new("kudo")
       make_a_kudo
