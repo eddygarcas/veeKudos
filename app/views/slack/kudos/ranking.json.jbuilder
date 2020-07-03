@@ -1,4 +1,3 @@
-json.response_type "in_channel"
 title = {
     type: "section",
     text: {
