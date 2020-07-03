@@ -16,7 +16,7 @@ giv_sec = {
     }
 }
 
-elems = @givers.map.with_index do |(key, value), index|
+elems = @kudos.first.map.with_index do |(key, value), index|
   {
       type: "section",
       text: {
@@ -34,7 +34,7 @@ get_sec = {
     }
 }
 
-elems_g = @getters.map.with_index do |(key, value), index|
+elems_g = @kudos.last.map.with_index do |(key, value), index|
   {
       type: "section",
       text: {
