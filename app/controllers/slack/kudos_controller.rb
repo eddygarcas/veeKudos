@@ -40,8 +40,8 @@ class Slack::KudosController < ApplicationController
     when "giver"
       @kudos = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
     when nil
-      @kudos = Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5),
-          Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
+      @kudos = Kudo.giver_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5),
+          Kudo.getter_leader(params[:team_id]).sort_by {|_k, v| v}.reverse.take(5)
     end
   end
 
