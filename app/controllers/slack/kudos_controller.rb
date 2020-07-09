@@ -6,7 +6,6 @@ class Slack::KudosController < ApplicationController
   before_action :set_command
   before_action :verify_slack_request
 
-
   def create
     case @commands[0]
     when Action.new("list")
@@ -64,7 +63,6 @@ class Slack::KudosController < ApplicationController
   end
 
   private
-
   #Commands will contains and array from the text introduced by the sender https://api.slack.com/interactivity/slash-commands
   def set_command
     @commands = *params[:text].split(" ")

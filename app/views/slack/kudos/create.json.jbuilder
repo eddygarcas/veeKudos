@@ -24,7 +24,7 @@ footer =  {
         "elements": [
             {
                 "type": "plain_text",
-                "text": "veeKudos by @eduard.garcia",
+                "text": "👍 veeKudos by @eduard.garcia / 🚀 Powered by GIPHY",
                 "emoji": true
             }
         ]
