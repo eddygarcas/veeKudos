@@ -1,3 +1,4 @@
+require 'loofah'
 class Kudo < ApplicationRecord
 
   scope :getter_leader, -> (id) {where(team_id: id).group(:receiver).count(:all)}
