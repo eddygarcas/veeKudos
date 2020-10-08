@@ -13,7 +13,7 @@ elems = @kudos.map.with_index do |elem, index|
       elements: [
       {
           type: "plain_text",
-          text: "#{VeeKudos.config[:company_emoji]} #{elem.sender} said at #{elem.channel_name}:  \"#{elem.text}\" on #{elem.created_at.strftime("%d/%m/%Y %H:%M")}\n",
+          text: "#{VeeKudos.config[:company_emoji]} #{elem.sender} said at #{elem.channel_name}:  \"#{sanitize(elem.text)}\" on #{elem.created_at.strftime("%d/%m/%Y %H:%M")}\n",
           emoji: true
       }]
   }

@@ -18,7 +18,7 @@ elems = @kudos.map.with_index do |elem, index|
           },
           {
           type: "mrkdwn",
-          text: "*#{elem.sender} said:* \"#{elem.text}\"\n"
+          text: "*#{elem.sender} said:* \"#{sanitize(elem.text)}\"\n"
       }]
   }
 end

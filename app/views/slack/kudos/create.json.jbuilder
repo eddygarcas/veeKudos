@@ -11,7 +11,7 @@ message = {
     type: "section",
     text: {
         type: "mrkdwn",
-        text: "#{VeeKudos.config[:company_emoji]} #{@kudo.text}"
+        text: "#{VeeKudos.config[:company_emoji]} #{sanitize(@kudo.text)}"
     },
     accessory: {
         type: "image",

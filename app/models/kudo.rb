@@ -19,7 +19,7 @@ class Kudo < ApplicationRecord
      team_id: p[:team_id],
      team_name: p[:team_domain],
      sender: "@#{p[:user_name]}",
-     text: p[:text].html_safe,
+     text: p[:text],
      receiver: r.blank? ? aparams[0] : r}
   end
 end
