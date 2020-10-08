@@ -1,4 +1,3 @@
-require 'loofah'
 class Kudo < ApplicationRecord
 
   scope :getter_leader, -> (id) {where(team_id: id).group(:receiver).count(:all)}
@@ -20,7 +19,7 @@ class Kudo < ApplicationRecord
      team_id: p[:team_id],
      team_name: p[:team_domain],
      sender: "@#{p[:user_name]}",
-     text: Loofah::Helpers.sanitize(p[:text]),
+     text: p[:text].html_safe,
      receiver: r.blank? ? aparams[0] : r}
   end
 end
